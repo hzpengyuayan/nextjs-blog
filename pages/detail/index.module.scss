@@ -1,0 +1,16 @@
+.detail {
+  display: flex;
+  //左侧列表区域
+  .article_area {
+    flex: 1;
+    margin-right: 1.667rem;
+    border-radius: 2px;
+    background-color: #fff;
+    height: 2000px;
+  }
+  //右侧信息区域
+  .sidebar {
+    width: 20rem;
+    background-color: #fff;
+  }
+}
