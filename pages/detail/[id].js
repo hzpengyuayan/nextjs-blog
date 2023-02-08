@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import Catelog from "../../components/Catelog";
+import Catelog from "@components/Catelog";
 
 export default function Detail() {
   return (

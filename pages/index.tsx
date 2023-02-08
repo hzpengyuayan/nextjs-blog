@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "./index.module.scss";
 
 export default function Home() {
@@ -51,12 +51,12 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <Image
+              {/* <Image
                 src="/public/images/baidu_test.png"
                 alt="Picture of the author"
                 width={120}
                 height={80}
-              ></Image>
+              ></Image> */}
             </div>
           </div>
           <div className={styles.entry}>
@@ -85,12 +85,12 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <Image
+              {/* <Image
                 src="/public/images/baidu_test.png"
                 alt="Picture of the author"
                 width={120}
                 height={80}
-              ></Image>
+              ></Image> */}
             </div>
           </div>
         </div>
