@@ -30,65 +30,6 @@
         }
       }
     }
-    .list_wrap > .entry {
-      padding: 12px 20px 0;
-      cursor: pointer;
-      .meta_container {
-        font-size: 13px;
-        line-height: 22px;
-      }
-      .content_wrapper {
-        display: flex;
-        margin-top: 10px;
-        width: 100%;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(228, 230, 235, 0.5);
-        .content_main {
-          flex: 1;
-          .title {
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 24px;
-            width: 100%;
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            margin-bottom: 10px;
-          }
-          .abstract {
-            color: #86909c;
-            font-size: 13px;
-            line-height: 22px;
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            margin-bottom: 10px;
-          }
-          .action_list {
-            display: flex;
-            > li {
-              display: flex;
-              align-items: center;
-              margin-right: 20px;
-              font-size: 13px;
-              line-height: 20px;
-              flex-shrink: 0;
-              > i {
-                font-size: 16px;
-              }
-              > span {
-                margin-left: 4px;
-                color: #4e5969;
-              }
-            }
-          }
-        }
-      }
-    }
   }
   //右侧信息区域
   .sidebar {
