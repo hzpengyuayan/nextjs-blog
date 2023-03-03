@@ -21,7 +21,7 @@ const NAVLIST: navItem[] = [
 ];
 
 export default function Home() {
-  console.log("HOME");
+  console.log("HOME" + process.env.NODE_ENV +111);
 
   return (
     <div className={styles.home_context}>

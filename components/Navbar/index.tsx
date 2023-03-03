@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Image from "next/image";
+import ImagePro from "@components/ImagePro";
 import Link from "next/link";
-import logo from "../../public/images/logo.png";
+import logo from "/public/images/logo.png";
 import styles from "./index.module.scss";
+
 
 export default function Navbar() {
   const [isShowList, setIsShowList] = useState<boolean>(false); //是否展示管理文章内的下拉列表
@@ -10,9 +11,10 @@ export default function Navbar() {
     <div className={styles.navbar}>
       <div className={styles.navbar_container}>
         <Link href="/" className={styles.logo}>
-          <Image src={logo} alt="博客LOGO" width={22} />
+          <ImagePro src={logo} alt="博客LOGO" width={22} height={22}></ImagePro>
           博客
         </Link>
+        <Link href="/editWebsite">定制你的专属网页</Link>
 
         <ul className={styles.navbar_list}>
           <li className={styles.search}>
