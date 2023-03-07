@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
+import ImagePro from "@components/ImagePro";
+import test from "/public/images/test.png";
 import styles from "./index.module.scss";
 
-export default function EntryItem() {
+export default function EntryItem({ id }: any) {
   const router = useRouter();
   //点击跳转
   const clickEntryItem = () => {
-    router.push('/detail/'+1)
+    router.push("/detail/" + id);
   };
   return (
     <div className={styles.entry} onClick={clickEntryItem}>
@@ -34,6 +36,12 @@ export default function EntryItem() {
             </li>
           </ul>
         </div>
+        <ImagePro
+          src={test}
+          alt="Picture of the author"
+          width={120}
+          height={80}
+        ></ImagePro>
         {/* <Image
         src="/public/images/baidu_test.png"
         alt="Picture of the author"

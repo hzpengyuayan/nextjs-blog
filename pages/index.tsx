@@ -1,27 +1,15 @@
 // import Image from "next/image";
 import styles from "./index.module.scss";
 import EntryItem from "@components/EntryItem";
+import { useState } from "react";
 
-type navItem = {
-  text: string;
-};
-const NAVLIST: navItem[] = [
-  {
-    text: "Js",
-  },
-  {
-    text: "Vue",
-  },
-  {
-    text: "React",
-  },
-  {
-    text: "Webpack",
-  },
-];
+//列表区域-筛选项
+const NAVLIST: string[] = ["All", "Js", "Vue", "React", "Webpack"];
 
 export default function Home() {
-  console.log("HOME" + process.env.NODE_ENV +111);
+
+  //列表区域选择项
+  const [curIndex, setCurIndex] = useState(0);
 
   return (
     <div className={styles.home_context}>
@@ -29,21 +17,24 @@ export default function Home() {
       <div className={styles.entry_list}>
         <div className={styles.header}>
           <ul className={styles.nav_list}>
-            {NAVLIST.map((item: navItem) => (
+            {NAVLIST.map((item: string, index: number) => (
               <li
-                key={item.text}
-                className={`${styles.nav_item} ${styles.active}`}
+                key={item}
+                className={`${styles.nav_item} ${
+                  curIndex === index && styles.active
+                }`}
+                onClick={() => setCurIndex(index)}
               >
-                <a href="#">{item.text}</a>
+                {item}
+                {/* <a href="#">{item}</a> */}
               </li>
             ))}
           </ul>
         </div>
         <div className={styles.list_wrap}>
-          <EntryItem></EntryItem>
-          <EntryItem></EntryItem>
-          <EntryItem></EntryItem>
-          <EntryItem></EntryItem>
+          <EntryItem id="1"></EntryItem>
+          <EntryItem id="2"></EntryItem>
+          <EntryItem id="3"></EntryItem>
         </div>
       </div>
       {/* 右侧信息区域 */}

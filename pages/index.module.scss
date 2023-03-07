@@ -17,12 +17,13 @@
         .nav_item {
           padding: 0 1.2rem;
           border-right: 1px solid hsla(0, 0%, 59.2%, 0.2);
-          color: #007fff;
-          > a {
-            font-size: 1.17rem;
-          }
+          font-size: 1.17rem;
+          cursor: pointer;
         }
-        .active > a {
+        .nav_item:nth-last-child(1) {
+          border-right: none;
+        }
+        .active {
           color: #007fff;
         }
         .nav_item :hover {
