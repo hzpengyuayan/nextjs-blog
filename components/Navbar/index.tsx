@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login } from "@services/users";
 import ImagePro from "@components/ImagePro";
 import Link from "next/link";
 import Login from "/public/images/login.png";
@@ -30,13 +31,17 @@ export default function Navbar() {
   const [isShowList, setIsShowList] = useState<boolean>(false); //是否展示管理文章内的下拉列表
   const [isShowLogin, setIsShowLogin] = useState<boolean>(false); //是否展示登录框
   const [loginInfo, setLoginInfo] = useState<Login>({
-    username: "",
-    password: "",
+    username: "zhangsan",
+    password: "123456",
   }); //登录信息
 
-  const handleLogin = () => {
-    console.log(loginInfo);
+  const handleLogin = async (type = "normal") => {
+    //console.log(loginInfo, type);
+    const res = await login(loginInfo);
+   // console.log(res);
   };
+
+  const handleRegister = () => {};
 
   return (
     <div className={styles.navbar}>
@@ -126,7 +131,12 @@ export default function Navbar() {
             <div className={styles.login_title}>Welcome to BLOG System</div>
             <div className={styles.login_warn}>
               <span>首次登录？</span>
-              <span>点击注册</span>
+              <span
+                onClick={handleRegister}
+                className={styles.login_to_register}
+              >
+                点击注册
+              </span>
             </div>
             <div className={styles.login_area}>
               {/* 登录区域 */}
@@ -156,9 +166,16 @@ export default function Navbar() {
                   }}
                 />
               </div>
-              {/* 按钮 */}
               <div className={styles.form_item}>
-                <button className={styles.form_item_btn} onClick={handleLogin}>登 录</button>
+                <span>忘记密码?</span>
+              </div>
+              <div className={styles.form_item}>
+                <button
+                  className={styles.form_item_btn}
+                  onClick={() => handleLogin()}
+                >
+                  登 录
+                </button>
               </div>
             </div>
           </div>

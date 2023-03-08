@@ -6,6 +6,8 @@
       "@components/*": ["components/*"],
       "@public/*": ["public/*"],
       "@styles/*": ["styles/*"],
+      "@api/*": ["api/*"],
+      "@services/*": ["services/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
