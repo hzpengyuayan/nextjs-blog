@@ -2,7 +2,12 @@ import React from "react";
 import styles from "./index.module.scss";
 import { render } from "react-dom";
 
-function createMessage(text: string) {
+function createMessage(text: string, type: string) {
+  const icons: any = {
+    info: "icon-warning-fill",
+    error: "icon-close-fill",
+    success: "icon-check-fill",
+  };
   let dom = document.createElement("div");
   dom.setAttribute("id", "message");
   document.body.appendChild(dom);
@@ -10,34 +15,27 @@ function createMessage(text: string) {
     "div",
     { className: styles.message_content },
     <>
-      <span className={styles.message_icon}>
-        <i className="iconfont icon-close-circle" />
+      <span className={`${styles.message_icon} ${styles[type]}`}>
+        <i className={`iconfont ${icons[type]}`} />
       </span>
-      <span>This is a</span>
+      <span>{text}</span>
     </>
   );
   render(div, dom);
   setTimeout(() => {
     dom!.remove();
-  }, 5000);
+  }, 3000);
 }
 function Message() {
   const types = ["success", "error", "info", "warn", "loading"];
   const message = {
-    error: function (text: string) {
-      createMessage(text);
-      //里面渲染进行二次封装
-    },
-    info: function (text: string) {
-      console.log(text);
-    },
+    error: (text: string) => createMessage(text, "error"),
+    info: (config: any) => createMessage(config, "info"),
     destroy: function () {
       console.log("destroy");
     },
   };
   return message;
 }
-//链式调用 利用对象,缺点,每个都要写
-//继续用参数
 
 export default Message();
