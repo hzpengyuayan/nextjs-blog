@@ -29,12 +29,14 @@ Request.interceptors.response.use(
     if (status === 200 && data.code === 200) return data;
   },
   function (error) {
+    console.log(error.response.status);
     if (error && error.response) {
       //message.destroy();
       switch (
         error.response.status //TODO 对于状态码的处理
       ) {
         case 400:
+        
           message.error('请求错误');
           break;
         case 401:
@@ -42,8 +44,9 @@ Request.interceptors.response.use(
             content: '登录过期，请重新登录',
             type: 'info',
             duration: 3,
-            maxCount: 1,
+          
             onClose: () => {
+              console.log('重定向处理');
               // TODO 重定向处理 添加unlogin
               // cookie.remove('userInfo');
               // window.location.href = '/login';
