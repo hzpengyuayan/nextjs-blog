@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { login } from "@services/users";
 import ImagePro from "@components/ImagePro";
+import Message from "@components/Message";
 import Link from "next/link";
+import { setToken, isAuth } from "../../api/auth";
 import Login from "/public/images/login.png";
 import logo from "/public/images/logo.png";
+import avatar from "/public/images/avatar.png";
 import styles from "./index.module.scss";
 
 type Link = {
@@ -36,9 +39,10 @@ export default function Navbar() {
   }); //登录信息
 
   const handleLogin = async (type = "normal") => {
-    //console.log(loginInfo, type);
     const res = await login(loginInfo);
-   // console.log(res);
+    Message.success("登录成功");
+    setToken(res.token);
+    setIsShowLogin(false);
   };
 
   const handleRegister = () => {};
@@ -100,20 +104,23 @@ export default function Navbar() {
           </li>
           {/* 登录区域 */}
           <li className={styles.personal}>
-            {/* 未登录 */}
-            <button
-              className={styles.login_btn}
-              onClick={() => setIsShowLogin(true)}
-            >
-              登录 | 注册
-            </button>
-            {/* 已登录 */}
-            <div className={styles.unlogin}>
-              {/* 消息提示区域 */}
-              <div></div>
-              {/* 头像展示区域 */}
-              <div></div>
-            </div>
+            {true ? (
+              <div className={styles.haslogin}>
+                {/* 消息提示区域 */}
+                <i className="iconfont icon-tixing-tianchong" />
+                {/* 头像展示区域 */}
+                <span className={styles.avatar}>
+                  <ImagePro src={avatar} alt="头像" width={36} height={36}></ImagePro>
+                </span>
+              </div>
+            ) : (
+              <button
+                className={styles.login_btn}
+                onClick={() => setIsShowLogin(true)}
+              >
+                登录 | 注册
+              </button>
+            )}
           </li>
         </ul>
       </div>

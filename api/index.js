@@ -4,6 +4,7 @@ import qs from "qs";
 import message from "@components/Message";
 
 import { BASE_URL } from "./baseUrl.js";
+import { getToken } from "./auth";
 
 const Request = axios.create({
   baseURL: BASE_URL,
@@ -12,10 +13,10 @@ const Request = axios.create({
 
 Request.interceptors.request.use(
   function (config) {
-    //const token = cookie.get('token'); //TODO TOKEN的获取 cookie|localstorage 添加login https://juejin.cn/post/7076283302402850823
-    // if (token) {
-    //   config.headers.authorization = token;
-    // }
+    const token = getToken() || ""; //TODO TOKEN的获取 cookie|localstorage 添加login https://juejin.cn/post/7076283302402850823
+    if (token && token.length > 0) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
     return config;
   },
   function (error) {
@@ -29,59 +30,55 @@ Request.interceptors.response.use(
     if (status === 200 && data.code === 200) return data;
   },
   function (error) {
-    console.log(error.response.status);
     if (error && error.response) {
       //message.destroy();
       switch (
         error.response.status //TODO 对于状态码的处理
       ) {
         case 400:
-        
-          message.error('请求错误');
+          message.error("请求错误");
           break;
         case 401:
           message.info({
-            content: '登录过期，请重新登录',
-            type: 'info',
+            content: "登录过期，请重新登录",
+            type: "info",
             duration: 3,
-          
             onClose: () => {
-              console.log('重定向处理');
               // TODO 重定向处理 添加unlogin
               // cookie.remove('userInfo');
-              // window.location.href = '/login';
+              window.location.href = "/";
             },
           });
           break;
         case 403:
-          message.info('拒绝访问');
+          message.info("拒绝访问");
           break;
         case 404:
-          message.info('请求错误，未找到资源');
+          message.info("请求错误，未找到资源");
           break;
         case 405:
-          message.info('请求方法未允许');
+          message.info("请求方法未允许");
           break;
         case 408:
-          message.info('请求超时');
+          message.info("请求超时");
           break;
         case 500:
-          message.info('服务端出错');
+          message.info("服务端出错");
           break;
         case 501:
-          message.info('网络未实现');
+          message.info("网络未实现");
           break;
         case 502:
-          message.info('网络错误');
+          message.info("网络错误");
           break;
         case 503:
-          message.info('服务不可用');
+          message.info("服务不可用");
           break;
         case 504:
-          message.info('网络超时');
+          message.info("网络超时");
           break;
         case 505:
-          message.info('http版本不支持该请求');
+          message.info("http版本不支持该请求");
           break;
         default:
           message.info(`连接错误${error.response.status}`);

@@ -63,6 +63,7 @@
 
   &_list {
     display: flex;
+    align-items: center;
     > li {
       margin-right: 12px;
     }
@@ -175,6 +176,25 @@
         color: #007fff;
         cursor: pointer;
       }
+      .haslogin {
+        display: flex;
+        align-items: center;
+        > i {
+          font-size: 26px;
+          cursor: pointer;
+        }
+        > i :hover {
+          color: #000;
+        }
+        .avatar {
+          margin-left: 15px;
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
     }
   }
 
@@ -217,7 +237,7 @@
         font-size: 13px;
         color: #ccc;
         margin-bottom: 23px;
-        .login_to_register:hover{
+        .login_to_register:hover {
           font-weight: 700;
           color: #4966df;
           cursor: pointer;

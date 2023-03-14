@@ -1,4 +1,4 @@
-const TOKEN_NAME = 'gics_token'; //TOKEN字段的修改
+const TOKEN_NAME = 'blog_token'; //TOKEN字段的修改
 
 //读取token
 const getToken = () => localStorage.getItem(TOKEN_NAME);
